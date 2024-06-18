@@ -1,0 +1,10 @@
+node_modules
+.env
+
+/public/upload/anexos/*.jpg
+/public/upload/anexos/*.png
+/public/upload/anexos/*.jpeg
+/public/upload/anexos/*.webp
+/public/upload/anexos/*.pdf
+/public/upload/anexos/*.mp3
+/public/upload/anexos/*.mp4
