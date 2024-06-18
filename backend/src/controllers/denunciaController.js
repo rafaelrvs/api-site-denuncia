@@ -57,7 +57,7 @@ async function enviarEmail(text,listaAnexos) {
       const mailOptionsComAnexos = {
         from: process.env.EMAIL_FROM,
         to: process.env.RECEBEEMAIL ,
-        //cc:process.env.EMAIL_COPIA,
+        cc:process.env.EMAIL_COPIA,
         subject: "Amalfis Denuncias - Nova denúncia recebida ",
         attachments:[ 
           {
