@@ -1,0 +1,33 @@
+.header{
+    display: flex;
+    padding: 30px;
+    background-color: #01427A;
+    box-shadow:0 1px 5px black;
+
+}
+
+.header .content-header{
+    width: 1000px;
+    margin: 0 auto;
+}
+.header img{
+    
+    height: 90px;
+}
+
+@media (max-width:1024px) {
+
+    .header .content-header{width: 600px;}
+    .header img{height: 60px;}
+    
+    }
+    @media (max-width:600px) {
+        
+
+        .header .content-header{
+            
+            display: flex;
+            justify-content: center;
+        }
+
+}
