@@ -9,7 +9,7 @@ function App() {
   const [imagemEscolhida, setImagemEscolhida] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const currentImg = useRef();
-  const url = import.meta.env.VITE_API_URL;
+  const url = 'http://localhost:3000';
 
   const [modal, setModal] = useState({
     status: false,
