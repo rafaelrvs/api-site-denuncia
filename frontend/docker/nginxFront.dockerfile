@@ -26,11 +26,11 @@ COPY ./frontend/docker/config/denuncia.amalfis.com.br.conf /etc/nginx/conf.d/den
 # COPY ./frontend/docker/scripts/renew_certificates.sh /usr/local/bin/renew_certificates.sh
 
 # Permissões para o script
-RUN chmod +x /usr/local/bin/renew_certificates.sh
+# RUN chmod +x /usr/local/bin/renew_certificates.sh
 
 # Expor as portas
 EXPOSE 80 443
 
 # Comando para iniciar o Nginx
 # CMD ["sh", "-c", "nginx -g 'daemon off;' & /usr/local/bin/renew_certificates.sh"]
-CMD ["sh", "-c", "nginx -g 'daemon off;" ]
+CMD ["nginx", "-g", "daemon off;"]
