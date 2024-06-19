@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/frontend.dockerfile
+    image: feljohnny/frontend-amalfis-denuncia
+    container_name: frontend-amalfis-denuncia
+    networks:
+      - amalfis-network
+    volumes:
+      - frontend-build:/app/frontend/build
+    command: sh -c "npm run build && cp -r /app/frontend/build /frontend_build"
+
+  nginx:
+    build: 
+      context: .
+      dockerfile: ./docker/nginx.dockerfile
+    image: feljohnny/nginx
+    container_name: nginx-amalfis-denuncia
+    ports: 
+      - "80:80"
+    networks:
+      - amalfis-network
+    depends_on:
+      - frontend
+    volumes:
+      - frontend-build:/usr/share/nginx/html
+      - ./docker/config/nginx.conf:/etc/nginx/nginx.conf
+
+networks:
+  amalfis-network:
+    driver: bridge
+
+volumes:
+  frontend-build:
