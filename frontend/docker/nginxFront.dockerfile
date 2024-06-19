@@ -14,7 +14,7 @@ RUN npm run build
 FROM nginx:latest
 
 # Instalar Certbot
-RUN apt-get update && apt-get install -y certbot python3-certbot-nginx
+# RUN apt-get update && apt-get install -y certbot python3-certbot-nginx
 
 # Copiar os arquivos construídos do estágio anterior
 COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
@@ -23,7 +23,7 @@ COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
 COPY ./frontend/docker/config/denuncia.amalfis.com.br.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
 
 # Copiar script para renovar certificados
-COPY ./frontend/docker/scripts/renew_certificates.sh /usr/local/bin/renew_certificates.sh
+# COPY ./frontend/docker/scripts/renew_certificates.sh /usr/local/bin/renew_certificates.sh
 
 # Permissões para o script
 RUN chmod +x /usr/local/bin/renew_certificates.sh
@@ -32,4 +32,5 @@ RUN chmod +x /usr/local/bin/renew_certificates.sh
 EXPOSE 80 443
 
 # Comando para iniciar o Nginx
-CMD ["sh", "-c", "nginx -g 'daemon off;' & /usr/local/bin/renew_certificates.sh"]
+# CMD ["sh", "-c", "nginx -g 'daemon off;' & /usr/local/bin/renew_certificates.sh"]
+CMD ["sh", "-c", "nginx -g 'daemon off;" ]
