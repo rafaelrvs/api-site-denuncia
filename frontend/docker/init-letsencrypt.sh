@@ -11,7 +11,7 @@ nginx -s stop
 
 echo "Running Certbot..."
 # Gerar os certificados SSL usando Certbot
-certbot --nginx -d denuncia.amalfis.com.br -m ti@amalfis.com.br --agree-tos --no-eff-email
+certbot --nginx -d denuncia.amalfis.com.br -m ti@amalfis.com.br --agree-tos --no-eff-email --non-interactive --redirect
 
 # Verificar se os certificados foram gerados
 if [ -f /etc/letsencrypt/live/denuncia.amalfis.com.br/fullchain.pem ]; then
