@@ -20,14 +20,14 @@ COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
 RUN apt-get update && apt-get install -y certbot python3-certbot-nginx cron
 
 # Copiar a configuração personalizada do Nginx
-COPY /docker/config/denuncia.amalfis.com.br.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
+COPY ./frontend/docker/config/denuncia.amalfis.com.br.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
 
 # Copiar o script de inicialização
-COPY /docker/scripts/init-letsencrypt.sh /init-letsencrypt.sh
+COPY ./frontend/docker/scripts/init-letsencrypt.sh /init-letsencrypt.sh
 RUN chmod +x /init-letsencrypt.sh
 
 # Copiar o arquivo de cron job
-COPY /docker/scripts/crontab /etc/cron.d/certbot-renew
+COPY ./frontend/docker/scripts/crontab /etc/cron.d/certbot-renew
 
 # Dar permissão correta ao arquivo de cron job
 RUN chmod 0644 /etc/cron.d/certbot-renew
