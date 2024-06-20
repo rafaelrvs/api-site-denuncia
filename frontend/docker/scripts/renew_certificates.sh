@@ -16,6 +16,9 @@ fi
 chmod 644 /etc/letsencrypt/live/denuncia.amalfis.com.br/fullchain.pem
 chmod 600 /etc/letsencrypt/live/denuncia.amalfis.com.br/privkey.pem
 
+# Ajustar permissões dos diretórios para garantir acessibilidade
+chmod 755 /etc/letsencrypt /etc/letsencrypt/live /etc/letsencrypt/live/denuncia.amalfis.com.br
+
 # Renovar certificados a cada 12 horas
 while true; do
     certbot renew

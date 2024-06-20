@@ -1,15 +1,3 @@
-# Etapa 1: Construção do frontend
-FROM node:latest AS build-stage
-
-WORKDIR /app
-
-COPY . /app
-
-WORKDIR /app/frontend
-
-RUN npm install
-RUN npm run build
-
 # Etapa 2: Configuração do Nginx com Certbot
 FROM nginx:latest
 
@@ -28,10 +16,9 @@ COPY ./frontend/docker/scripts/renew_certificates.sh /usr/local/bin/renew_certif
 # Permissões para o script
 RUN chmod +x /usr/local/bin/renew_certificates.sh
 
-# Adicionando comandos para ajustar permissões
+# Criar diretórios e definir permissões corretas
 RUN mkdir -p /etc/letsencrypt/live/denuncia.amalfis.com.br && \
-    chmod 644 /etc/letsencrypt/live/denuncia.amalfis.com.br/fullchain.pem && \
-    chmod 600 /etc/letsencrypt/live/denuncia.amalfis.com.br/privkey.pem
+    chmod 755 /etc /etc/letsencrypt /etc/letsencrypt/live /etc/letsencrypt/live/denuncia.amalfis.com.br
 
 # Expor as portas
 EXPOSE 80 443
