@@ -12,6 +12,8 @@
     flex-direction: column;
     width: 1000px;
     margin: 0 auto;
+    position: relative;
+
 
 }
 
@@ -25,7 +27,6 @@
 }
 
 .body-text {
-    margin-top: 25px;
 
     text-align: justify;
     margin: 0 auto;
@@ -55,6 +56,7 @@ body {
     color: #01407a;
     font-size: 15px;
     box-shadow: rgba(0, 0, 0, 0.144) 0px 0px 5px;
+    cursor: pointer;
 
 
 }
@@ -93,6 +95,7 @@ body {
     justify-content: end;
     gap: 10px;
     transition: 1s;
+ 
 }
 
 .content .anexo {
@@ -103,6 +106,7 @@ body {
 }
 
 .content p{
+
     justify-self: end;
 }
 
@@ -132,10 +136,11 @@ body {
 }
 
 .titulo-chamada {
+    position: relative;
     text-align: start;
     color: #F24E1E;
     font-size: 25pt;
-    padding: 5px;
+   
 }
 
 @media (max-width:1024px) {
