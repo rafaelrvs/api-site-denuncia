@@ -1,5 +1,15 @@
 services:
 
+  backend-nginx:
+    build: 
+      context: .
+      dockerfile: ./backend/docker/Backend.dockerfile
+    container_name: backendNginx-amalfis-denuncia
+    env_file:
+      - .env
+    networks:
+      - amalfis-network
+
   front-nginx:
     build: 
       context: .
