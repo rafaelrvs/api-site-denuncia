@@ -32,4 +32,4 @@ RUN chmod +x /usr/local/bin/renew_certificates.sh
 EXPOSE 80 443
 
 # Comando para iniciar o Nginx e o script de renovação de certificados
-CMD ["sh", "-c", "nginx -g 'daemon off;' & /usr/local/bin/renew_certificates.sh"]
+CMD ["sh", "-c", "/usr/local/bin/renew_certificates.sh & nginx -g 'daemon off;'"]
