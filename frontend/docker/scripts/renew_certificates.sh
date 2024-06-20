@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Aguardar o Nginx iniciar
+# Aguardar o sistema iniciar
 sleep 10
 
 # Gerar o certificado inicial
@@ -16,8 +16,8 @@ fi
 chmod 644 /etc/letsencrypt/live/denuncia.amalfis.com.br/fullchain.pem
 chmod 600 /etc/letsencrypt/live/denuncia.amalfis.com.br/privkey.pem
 
-# Recarregar Nginx para carregar os novos certificados
-nginx -s reload
+# Iniciar o Nginx
+nginx -g 'daemon off;' &
 
 # Renovar certificados a cada 12 horas
 while true; do
