@@ -1,17 +1,10 @@
 services:
-  frontend:
-    build: 
-      context: .
-      dockerfile: ./frontend/docker/frontend.dockerfile
-    container_name: frontend-amalfis-denuncia
-    networks:
-      - amalfis-network
 
-  nginx:
+  FrontNginx:
     build: 
       context: .
-      dockerfile: ./frontend/docker/nginx.dockerfile
-    container_name: nginx-amalfis-denuncia
+      dockerfile: ./frontend/docker/FrontNginx.dockerfile
+    container_name: FrontNginx-amalfis-denuncia
     ports: 
       - "80:80"
       - "443:443"
