@@ -1,9 +1,16 @@
 services:
+  frontend:
+    build: 
+      context: ./docker
+      dockerfile: frontend.dockerfile
+    container_name: frontend-amalfis-denuncia
+    networks:
+      - amalfis-network
+
   nginx:
     build: 
-      context: .
-      dockerfile: ./frontend/docker/nginxFront.dockerfile
-    image: feljohnny/nginx-frontend
+      context: ./docker
+      dockerfile: nginx.dockerfile
     container_name: nginx-amalfis-denuncia
     ports: 
       - "80:80"

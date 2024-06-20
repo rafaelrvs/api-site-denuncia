@@ -1,0 +1,2 @@
+# Renovar certificados diariamente à meia-noite
+0 0 * * * root /usr/bin/certbot renew --quiet --post-hook "nginx -s reload"

@@ -10,7 +10,7 @@ echo "Stopping temporary Nginx server..."
 nginx -s stop
 
 echo "Running Certbot..."
-# Gerar os certificados SSL usando Certbot
+# Gerar os certificados SSL usando Certbot standalone
 certbot certonly --standalone --non-interactive --agree-tos -m felipijohnny@outlook.com -d denuncia.amalfis.com.br
 
 # Verificar se os certificados foram gerados
