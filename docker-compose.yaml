@@ -10,11 +10,6 @@ services:
       - "443:443"
     networks:
       - amalfis-network
-    volumes:
-      - type: bind
-        source: /etc/letsencrypt/live/denuncia.amalfis.com.br
-        target: /etc/letsencrypt/live/denuncia.amalfis.com.br
-        read_only: true
 
 networks:
   amalfis-network:
