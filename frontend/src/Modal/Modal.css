@@ -1,19 +1,21 @@
 .modal{
   position: absolute;
-  padding: 15px 35px;
+  padding: 10px 35px;
+  top: 45%;
   border-radius: 5px;
   animation:  modal  5s linear forwards;
   color: #fff;
   font-weight: 500;
   box-shadow: 0 0 1px black;
  
+
 }
 
 
 @keyframes modal {
     0%{
         opacity: 40%;
-        right: -50px;
+        right: -40px;
         }
     10%{
         opacity: 100%;
