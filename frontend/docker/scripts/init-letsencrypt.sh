@@ -2,11 +2,14 @@
 
 set -e
 
-echo "Starting temporary Nginx server without SSL..."
+echo "ABRINDO TEMPORARIAMENTE O NGINX SSL..."
 nginx &
 
 # Esperar alguns segundos para o Nginx iniciar
 sleep 5
+
+echo "PARANDO TEMPORARIAMENTE O Nginx server..."
+nginx -s stop
 
 echo "RODANDO CERTBOT..."
 # Gerar os certificados SSL usando Certbot standalone
