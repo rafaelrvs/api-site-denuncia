@@ -25,8 +25,12 @@ COPY ./frontend/docker/config/denuncia.amalfis.com.br.conf /etc/nginx/conf.d/den
 # Copiar script para renovar certificados
 COPY ./frontend/docker/scripts/renew_certificates.sh /usr/local/bin/renew_certificates.sh
 
-# Permissões para o script
+# Copiar script de inicialização
+COPY ./frontend/docker/scripts/start_nginx.sh /usr/local/bin/start_nginx.sh
+
+# Permissões para os scripts
 RUN chmod +x /usr/local/bin/renew_certificates.sh
+RUN chmod +x /usr/local/bin/start_nginx.sh
 
 # Criar diretórios e definir permissões corretas
 RUN mkdir -p /etc/letsencrypt/live/denuncia.amalfis.com.br && \
@@ -35,5 +39,5 @@ RUN mkdir -p /etc/letsencrypt/live/denuncia.amalfis.com.br && \
 # Expor as portas
 EXPOSE 80 443
 
-# Comando para iniciar o Nginx e o script de renovação de certificados
-CMD ["sh", "-c", "/usr/local/bin/renew_certificates.sh & nginx -g 'daemon off;'"]
+# Comando para iniciar o script de inicialização
+CMD ["/usr/local/bin/start_nginx.sh"]
