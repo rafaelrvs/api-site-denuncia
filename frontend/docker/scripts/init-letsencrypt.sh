@@ -1,26 +1,35 @@
 #!/bin/bash
 
-echo "Starting temporary Nginx server..."
+set -e
+
+echo "Starting temporary Nginx server without SSL..."
 nginx &
 
 # Esperar alguns segundos para o Nginx iniciar
 sleep 5
 
-echo "Stopping temporary Nginx server..."
-nginx -s stop
-
-echo "Running Certbot..."
+echo "RODANDO CERTBOT..."
 # Gerar os certificados SSL usando Certbot standalone
-certbot certonly --standalone --non-interactive --agree-tos -m felipijohnny@outlook.com -d denuncia.amalfis.com.br
+certbot certonly --standalone --non-interactive --agree-tos -m felipijohnny@outlook.com -d denuncia.amalfis.com.br || {
+  echo "Certbot failed"
+  cat /var/log/letsencrypt/letsencrypt.log
+  exit 1
+}
 
 # Verificar se os certificados foram gerados
 if [ -f /etc/letsencrypt/live/denuncia.amalfis.com.br/fullchain.pem ]; then
-    echo "Certificates generated successfully."
+    echo "CERTIFICADOS GERADOS COM SUCESSO."
 else
-    echo "Failed to generate certificates."
+    echo "FALHA AO GERAR CERTIFICADOS."
+    cat /var/log/letsencrypt/letsencrypt.log
     exit 1
 fi
 
-echo "Starting Nginx with SSL..."
-# Iniciar o Nginx em modo daemon off
+echo "ATUALIZANDO ARQUIVO DE CONFIGURAÇÃO DO NGINX COM O SSL..."
+# Copiar a configuração do Nginx para usar SSL
+cp /etc/nginx/conf.d/denuncia.amalfis.com.br.ssl.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
+
+echo "REINICIANDO NGINXL..."
+# Reiniciar o Nginx em modo daemon off com a nova configuração
+nginx -s stop
 nginx -g "daemon off;"
