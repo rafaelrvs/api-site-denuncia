@@ -2,13 +2,13 @@
 
 set -e
 
-echo "ABRINDO TEMPORARIAMENTE O NGINX SSL..."
+echo "ABRINDO TEMPORARIAMENTE O NGINX..."
 nginx &
 
 # Esperar alguns segundos para o Nginx iniciar
 sleep 5
 
-echo "PARANDO TEMPORARIAMENTE O Nginx server..."
+echo "PARANDO TEMPORARIAMENTE O NGINX..."
 nginx -s stop
 
 echo "RODANDO CERTBOT..."
@@ -32,7 +32,7 @@ echo "ATUALIZANDO ARQUIVO DE CONFIGURAÇÃO DO NGINX COM O SSL..."
 # Copiar a configuração do Nginx para usar SSL
 cp /etc/nginx/conf.d/denuncia.amalfis.com.br.ssl.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
 
-echo "REINICIANDO NGINXL..."
+echo "REINICIANDO NGINX..."
 # Reiniciar o Nginx em modo daemon off com a nova configuração
 nginx -s stop
 nginx -g "daemon off;"

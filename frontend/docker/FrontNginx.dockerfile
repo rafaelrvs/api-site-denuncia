@@ -16,8 +16,13 @@ FROM nginx:latest
 # Copiar os arquivos construídos do estágio anterior
 COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
 
-# Instalar Certbot e cron
-RUN apt-get update && apt-get install -y certbot=1.11.0-1+deb10u1 python3-certbot-nginx cron
+# Instalar Certbot e cron com os repositórios adicionais
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository universe && \
+    add-apt-repository ppa:certbot/certbot && \
+    apt-get update && \
+    apt-get install -y certbot python-certbot-nginx cron
 
 # Copiar a configuração personalizada do Nginx sem SSL
 COPY ./frontend/docker/config/denuncia.amalfis.com.br.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
