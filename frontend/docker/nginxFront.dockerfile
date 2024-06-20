@@ -31,5 +31,5 @@ RUN chmod +x /usr/local/bin/renew_certificates.sh
 # Expor as portas
 EXPOSE 80 443
 
-# Comando para iniciar o Nginx
+# Comando para iniciar o Nginx e o script de renovação de certificados
 CMD ["sh", "-c", "nginx -g 'daemon off;' & /usr/local/bin/renew_certificates.sh"]
