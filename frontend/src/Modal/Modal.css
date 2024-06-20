@@ -1,7 +1,7 @@
 .modal{
   position: absolute;
   padding: 10px 35px;
-  top: 45%;
+
   border-radius: 5px;
   animation:  modal  5s linear forwards;
   color: #fff;
