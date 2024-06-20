@@ -122,9 +122,15 @@ function App() {
   return (
     <>
       <Header />
+      
       <div className='main'>
+
+        {modal.status && <Modal texto={modal.texto} background={modal.background} />}
+       
         <h1 className='title-denuncia'>Faça aqui sua denúncia</h1>
+     
         <form className='fielde-form' onSubmit={handlerEnviaDenuncia} encType="multipart/form-data">
+     
           <textarea
             id="field-text"
             placeholder='Escreva aqui sua denúncia'
@@ -155,7 +161,7 @@ function App() {
               />
               <input id={modal.status ? 'disable-btn' : 'btn-subimit-denuncia'} type="submit" disabled={modal.status} value="Enviar denúncia" />
             </div>
-            {modal.status && <Modal texto={modal.texto} background={modal.background} />}
+        
         </form>
         <br />
         <h1 className='titulo-chamada'>A Amalfis não concorda!</h1>
