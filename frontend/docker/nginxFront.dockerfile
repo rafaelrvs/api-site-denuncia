@@ -1,5 +1,17 @@
+# Etapa 1: Construção do frontend
+FROM node:latest AS build-stage
+
+WORKDIR /app
+
+COPY . /app
+
+WORKDIR /app/frontend
+
+RUN npm install
+RUN npm run build
+
 # Etapa 2: Configuração do Nginx com Certbot
-FROM nginx:latest AS build-stage
+FROM nginx:latest
 
 # Instalar Certbot
 RUN apt-get update && apt-get install -y certbot python3-certbot-nginx
