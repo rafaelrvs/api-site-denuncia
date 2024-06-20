@@ -10,6 +10,8 @@ services:
       - "443:443"
     networks:
       - amalfis-network
+    volumes:
+      - /etc/letsencrypt/live/denuncia.amalfis.com.br/:/etc/letsencrypt/live/denuncia.amalfis.com.br/
 
 networks:
   amalfis-network:
