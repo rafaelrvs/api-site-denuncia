@@ -12,6 +12,10 @@ services:
       - amalfis-network
     volumes:
       - /etc/letsencrypt/live/denuncia.amalfis.com.br:/etc/letsencrypt/live/denuncia.amalfis.com.br:ro
+      - /etc/letsencrypt/live/denuncia.amalfis.com.br/chain1.pem:/etc/letsencrypt/live/denuncia.amalfis.com.br/chain1.pem:ro
+      - /etc/letsencrypt/live/denuncia.amalfis.com.br/cert1.pem:/etc/letsencrypt/live/denuncia.amalfis.com.br/cert1.pem:ro
+      - /etc/letsencrypt/live/denuncia.amalfis.com.br/fullchain1.pem:/etc/letsencrypt/live/denuncia.amalfis.com.br/fullchain1.pem:ro
+      - /etc/letsencrypt/live/denuncia.amalfis.com.br/privkey1.pem:/etc/letsencrypt/live/denuncia.amalfis.com.br/privkey1.pem:ro
 
 networks:
   amalfis-network:
