@@ -19,8 +19,7 @@ COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
 # Instalar Certbot e cron com os repositórios adicionais
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
-    add-apt-repository universe && \
-    add-apt-repository ppa:certbot/certbot && \
+    echo "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe" >> /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -y certbot python-certbot-nginx cron
 
