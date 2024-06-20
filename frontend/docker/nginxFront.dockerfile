@@ -1,5 +1,5 @@
 # Etapa 2: Configuração do Nginx com Certbot
-FROM nginx:latest
+FROM nginx:latest AS build-stage
 
 # Instalar Certbot
 RUN apt-get update && apt-get install -y certbot python3-certbot-nginx
