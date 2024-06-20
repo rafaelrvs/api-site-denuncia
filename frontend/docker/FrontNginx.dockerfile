@@ -16,11 +16,18 @@ FROM nginx:latest
 # Copiar os arquivos construídos do estágio anterior
 COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
 
-# Instalar Certbot e cron
-RUN apt-get update && apt-get install -y certbot python3-certbot-nginx cron
+# Instalar Certbot e cron com os repositórios adicionais
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    echo "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe" >> /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y certbot python-certbot-nginx cron
 
-# Copiar a configuração personalizada do Nginx
+# Copiar a configuração personalizada do Nginx sem SSL
 COPY ./frontend/docker/config/denuncia.amalfis.com.br.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
+
+# Copiar a configuração personalizada do Nginx com SSL
+COPY ./frontend/docker/config/denuncia.amalfis.com.br.ssl.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.ssl.conf
 
 # Copiar o script de inicialização
 COPY ./frontend/docker/scripts/init-letsencrypt.sh /init-letsencrypt.sh
