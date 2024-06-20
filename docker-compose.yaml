@@ -3,7 +3,7 @@ services:
   FrontNginx:
     build: 
       context: .
-      dockerfile: ./frontend/docker/FrontNginx.dockerfile
+      dockerfile: ./frontend/docker/frontNginx.dockerfile
     container_name: FrontNginx-amalfis-denuncia
     ports: 
       - "80:80"
