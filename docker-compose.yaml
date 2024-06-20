@@ -1,6 +1,6 @@
 services:
 
-  FrontNginx:
+  front-nginx:
     build: 
       context: .
       dockerfile: ./frontend/docker/FrontNginx.dockerfile
