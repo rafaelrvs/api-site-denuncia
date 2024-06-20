@@ -20,6 +20,8 @@ services:
       - "443:443"
     networks:
       - amalfis-network
+    depends_on:
+      - backend-nginx
 
 networks:
   amalfis-network:
