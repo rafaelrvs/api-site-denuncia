@@ -1,38 +1,64 @@
 #!/bin/bash
 
-set -e
-
-echo "ABRINDO TEMPORARIAMENTE O NGINX..."
-nginx &
-
-# Esperar alguns segundos para o Nginx iniciar
-sleep 5
-
-echo "PARANDO TEMPORARIAMENTE O NGINX..."
-nginx -s stop
-
-echo "RODANDO CERTBOT..."
-# Gerar os certificados SSL usando Certbot standalone
-certbot certonly --standalone --non-interactive --agree-tos -m felipijohnny@outlook.com -d denuncia.amalfis.com.br || {
-  echo "Certbot failed"
-  cat /var/log/letsencrypt/letsencrypt.log
-  exit 1
+# Função para solicitar o certificado Let's Encrypt
+request_cert() {
+    certbot certonly --standalone --non-interactive --agree-tos -m $CERTBOT_EMAIL -d $DOMAIN_NAME || return 1
+    return 0
 }
 
-# Verificar se os certificados foram gerados
-if [ -f /etc/letsencrypt/live/denuncia.amalfis.com.br/fullchain.pem ]; then
-    echo "CERTIFICADOS GERADOS COM SUCESSO."
-else
-    echo "FALHA AO GERAR CERTIFICADOS."
-    cat /var/log/letsencrypt/letsencrypt.log
+# Função para renovar o certificado Let's Encrypt
+renew_cert() {
+    certbot renew --non-interactive || return 1
+    return 0
+}
+
+# Verifica se as variáveis de ambiente DOMAIN_NAME e CERTBOT_EMAIL estão definidas
+if [ -z "$DOMAIN_NAME" ]; then
+    echo "A variável de ambiente DOMAIN_NAME não está definida."
     exit 1
 fi
 
-echo "ATUALIZANDO ARQUIVO DE CONFIGURAÇÃO DO NGINX COM O SSL..."
-# Copiar a configuração do Nginx para usar SSL
-cp /etc/nginx/conf.d/denuncia.amalfis.com.br.ssl.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
+if [ -z "$CERTBOT_EMAIL" ]; then
+    echo "A variável de ambiente CERTBOT_EMAIL não está definida."
+    exit 1
+fi
 
-echo "REINICIANDO NGINX..."
-# Reiniciar o Nginx em modo daemon off com a nova configuração
-nginx -s stop
-nginx -g "daemon off;"
+# Verifica se o certificado já existe
+if [ -d "/etc/letsencrypt/live/$DOMAIN_NAME" ]; then
+    echo "Certificado já existe, tentando renovar..."
+    if ! renew_cert; then
+        echo "Renovação do Certificado falhou, tentando solicitar um novo..."
+        if ! request_cert; then
+            echo "Certbot falhou, gerando certificado autoassinado"
+            mkdir -p /etc/letsencrypt/live/${DOMAIN_NAME}
+            openssl req -x509 -nodes -days 30 -newkey rsa:2048 -keyout /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem -out /etc/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem -subj "/CN=${DOMAIN_NAME}"
+        else
+            echo "Certbot obteve um certificado com sucesso"
+        fi
+    else
+        echo "Certificado renovado com sucesso"
+    fi
+else
+    echo "Certificado não existe, solicitando um novo..."
+    if ! request_cert; then
+        echo "Certbot falhou, gerando certificado autoassinado"
+        mkdir -p /etc/letsencrypt/live/${DOMAIN_NAME}
+        openssl req -x509 -nodes -days 30 -newkey rsa:2048 -keyout /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem -out /etc/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem -subj "/CN=${DOMAIN_NAME}"
+    else
+        echo "Certbot obteve um certificado com sucesso"
+    fi
+fi
+
+# Reinicia o Nginx para aplicar as novas configurações com SSL
+nginx -g 'daemon off;' &
+
+# Loop para verificar e tentar renovar o certificado Let's Encrypt a cada 24 horas
+while true; do
+  sleep 24h
+  if renew_cert; then
+    echo "Certificado renovado com sucesso, reiniciando Nginx"
+    nginx -s reload
+  else
+    echo "Renovação do Certificado falhou, tentando novamente em 24 horas"
+  fi
+done

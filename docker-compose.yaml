@@ -1,5 +1,5 @@
-services:
 
+services:
   backend-nginx:
     build: 
       context: .
@@ -24,7 +24,16 @@ services:
       - amalfis-network
     depends_on:
       - backend-nginx
+    volumes:
+      - certs:/etc/letsencrypt
+      - certs-data:/var/lib/letsencrypt
+      - certbot-config:/etc/letsencrypt/config
 
 networks:
   amalfis-network:
     driver: bridge
+
+volumes:
+  certs:
+  certs-data:
+  certbot-config:
