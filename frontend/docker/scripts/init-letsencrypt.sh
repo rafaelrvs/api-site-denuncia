@@ -2,7 +2,7 @@
 
 # Função para solicitar o certificado Let's Encrypt
 request_cert() {
-    certbot certonly --standalone --non-interactive --agree-tos -m $CERTBOT_EMAIL -d $DOMAIN_NAME || return 1
+    certbot certonly --standalone --non-interactive --agree-tos -m "$CERTBOT_EMAIL" -d "$DOMAIN_NAME" || return 1
     return 0
 }
 

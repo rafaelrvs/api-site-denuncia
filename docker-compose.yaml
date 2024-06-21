@@ -28,7 +28,9 @@ services:
       - certs:/etc/letsencrypt
       - certs-data:/var/lib/letsencrypt
       - certbot-config:/etc/letsencrypt/config
-
+    environment:
+      - DOMAIN_NAME=denunca.amalfis.com.br
+      - CERTBOT_EMAIL=felipijohnny@outlook.com
 networks:
   amalfis-network:
     driver: bridge

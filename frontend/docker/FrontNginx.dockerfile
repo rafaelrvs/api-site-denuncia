@@ -29,4 +29,3 @@ EXPOSE 80 443
 
 # Comando para iniciar o script de inicialização
 ENTRYPOINT ["/init-letsencrypt.sh"]
-
