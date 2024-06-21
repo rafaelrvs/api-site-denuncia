@@ -11,7 +11,7 @@ RUN npm install
 RUN npm run build
 
 # Etapa 2: Configuração do Nginx e Certbot
-FROM feljohnny/nginx-certbot:0.3
+FROM feljohnny/nginx-certbot:0.4
 
 # Copiar os arquivos construídos do estágio anterior
 COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
