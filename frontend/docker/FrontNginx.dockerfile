@@ -20,12 +20,15 @@ COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
 COPY ./frontend/docker/config/nginx.conf /etc/nginx/nginx.conf
 
 # Copiar a configuração personalizada do Nginx
-COPY ./frontend/docker/config/denuncia.amalfis.com.br.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
+COPY ./frontend/docker/config/denuncia.amalfis.com.br.conf.template /etc/nginx/conf.d/denuncia.amalfis.com.br.conf.template
 
 # Copiar o script de inicialização
 COPY ./frontend/docker/scripts/init-letsencrypt.sh /init-letsencrypt.sh
 
 RUN chmod +x /init-letsencrypt.sh
+
+# Substituir variáveis de ambiente no arquivo de configuração do Nginx
+RUN envsubst < /etc/nginx/conf.d/denuncia.amalfis.com.br.conf.template > /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
 
 # Expor as portas
 EXPOSE 80 443

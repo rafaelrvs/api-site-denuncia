@@ -1,4 +1,3 @@
-
 services:
   backend-nginx:
     build: 
@@ -29,7 +28,7 @@ services:
       - certs-data:/var/lib/letsencrypt
       - certbot-config:/etc/letsencrypt/config
     environment:
-      - DOMAIN_NAME=denunca.amalfis.com.br
+      - DOMAIN_NAME=denuncia.amalfis.com.br
       - CERTBOT_EMAIL=felipijohnny@outlook.com
 networks:
   amalfis-network:
