@@ -6,6 +6,10 @@ services:
     container_name: backendNginx-amalfis-denuncia
     ports:
       - "3000:3000"
+    volumes:
+      - certs:/etc/letsencrypt
+      - certs-data:/var/lib/letsencrypt
+      - certbot-config:/etc/letsencrypt/config
     networks:
       - amalfis-network
 
