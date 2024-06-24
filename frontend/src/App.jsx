@@ -9,7 +9,7 @@ function App() {
   const [imagemEscolhida, setImagemEscolhida] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const currentImg = useRef();
-  const url = 'http://denuncia.amalfis.com.br/api/denuncia';
+  const url = 'https://denuncia.amalfis.com.br/api/denuncia';
 
   const [modal, setModal] = useState({
     status: false,
