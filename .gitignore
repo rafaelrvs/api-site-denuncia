@@ -7,3 +7,4 @@ node_modules
 /public/upload/anexos/*.pdf
 /public/upload/anexos/*.mp3
 /public/upload/anexos/*.mp4
+.env
