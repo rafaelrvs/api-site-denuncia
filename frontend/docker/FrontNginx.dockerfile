@@ -27,9 +27,6 @@ COPY ./frontend/docker/scripts/init-letsencrypt.sh /init-letsencrypt.sh
 
 RUN chmod +x /init-letsencrypt.sh
 
-# Substituir variáveis de ambiente no arquivo de configuração do Nginx
-RUN envsubst '${DOMAIN_NAME}' < /etc/nginx/conf.d/denuncia.amalfis.com.br.conf > /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
-
 # Expor as portas
 EXPOSE 80 443
 
