@@ -10,7 +10,6 @@ services:
       - certs:/etc/letsencrypt
       - certs-data:/var/lib/letsencrypt
       - certbot-config:/etc/letsencrypt/config
-      - env:/app/backend/
     networks:
       - amalfis-network
 
