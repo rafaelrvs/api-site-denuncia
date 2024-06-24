@@ -16,8 +16,11 @@ FROM feljohnny/nginx-certbot:0.4
 # Copiar os arquivos construídos do estágio anterior
 COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
 
+# Copiar a configuração principal do Nginx
+COPY ./frontend/docker/config/nginx.conf /etc/nginx/nginx.conf
+
 # Copiar a configuração personalizada do Nginx
-COPY ./frontend/docker/config/denuncia.amalfis.com.br.conf /etc/nginx/conf.d/nginx.conf
+COPY ./frontend/docker/config/denuncia.amalfis.com.br.conf /etc/nginx/conf.d/denuncia.amalfis.com.br.conf
 
 # Copiar o script de inicialização
 COPY ./frontend/docker/scripts/init-letsencrypt.sh /init-letsencrypt.sh
