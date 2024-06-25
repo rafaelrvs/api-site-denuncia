@@ -160,7 +160,7 @@ function App() {
                 className='anexo'
                 onChange={handleFileChange}
               />
-              <input className='animeLeft'  id={modal.status ? 'disable-btn ' : 'btn-subimit-denuncia'} type="submit" disabled={modal.status} value="Enviar denúncia" />
+              <input id={modal.status ? 'disable-btn' : 'btn-subimit-denuncia'} type="submit" disabled={modal.status} value="Enviar denúncia" />
             </div>
         
         </form>
