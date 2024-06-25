@@ -130,6 +130,11 @@ function App() {
      
         <form className='fielde-form  animeDown' onSubmit={handlerEnviaDenuncia} encType="multipart/form-data">
         <h1 className='title-denuncia '>Faça aqui sua denúncia</h1>
+       
+        <p className='body-text animeUp ' >
+          Nosso compromisso é proporcionar um ambiente de trabalho seguro e respeitoso para todos os nossos colaboradores. Este Canal de Denúncia oferece a todos a oportunidade de reportar informações relativas a violações de qualquer natureza, bem como suspeitas fundamentadas de violações. A análise do conteúdo das denúncias é realizada exclusivamente pela Amalfis Uniformes/Maria Raimunda e o anonimato é garantido ao denunciante, que não precisa necessariamente se identificar. As informações fornecidas serão tratadas em estrita confidencialidade e apenas compartilhadas para a devida análise do caso. A informação fornecida poderá motivar o início de investigações internas, feitas por equipe especializada, bem como investigações por autoridades públicas e a tomada das medidas cabíveis. Por outro lado, a disseminação consciente de informação falsa ao Canal de Denúncia também será tratada com a devida seriedade, responsabilizando-se aqueles que procurarem utilizar este instrumento de forma indevida. Atenção: Este canal de denúncias NÃO é um canal de emergência. Não use este canal para denunciar ameaças iminentes à vida. Nestes casos, somente a autoridade policial local poderá interceder.
+        </p>
+        <br />
      
           <textarea
          
@@ -164,12 +169,7 @@ function App() {
             </div>
         
         </form>
-        <br />
-        <h1 className='titulo-chamada animeUp'>A Amalfis não concorda!</h1>
-        <p className='body-text animeUp ' >
-          Nosso compromisso é proporcionar um ambiente de trabalho seguro e respeitoso para todos os nossos colaboradores. Este Canal de Denúncia oferece a todos a oportunidade de reportar informações relativas a violações de qualquer natureza, bem como suspeitas fundamentadas de violações. A análise do conteúdo das denúncias é realizada exclusivamente pela Amalfis Uniformes/Maria Raimunda e o anonimato é garantido ao denunciante, que não precisa necessariamente se identificar. As informações fornecidas serão tratadas em estrita confidencialidade e apenas compartilhadas para a devida análise do caso. A informação fornecida poderá motivar o início de investigações internas, feitas por equipe especializada, bem como investigações por autoridades públicas e a tomada das medidas cabíveis. Por outro lado, a disseminação consciente de informação falsa ao Canal de Denúncia também será tratada com a devida seriedade, responsabilizando-se aqueles que procurarem utilizar este instrumento de forma indevida. Atenção: Este canal de denúncias NÃO é um canal de emergência. Não use este canal para denunciar ameaças iminentes à vida. Nestes casos, somente a autoridade policial local poderá interceder.
-        </p>
-        <br />
+      
       </div>
       <Footer />
     </>

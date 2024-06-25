@@ -19,16 +19,23 @@
 
 @media (max-width:1024px) {
 
-    .header .content-header{width: 600px;}
-    .header img{height: 60px;}
+    .header .content-header{
+        width: 600px;
+     ;
+        
+    }
+    .header img{
+        height: 100px;}
+
     
     }
     @media (max-width:600px) {
         
 
         .header .content-header{
-            
+        
             display: flex;
+            align-items: center;
             justify-content: center;
         }
 
