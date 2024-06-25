@@ -30,6 +30,7 @@
 .body-text {
     text-align: justify;
     color: #01407a;
+    
    
 
 }
@@ -47,24 +48,29 @@ body {
 }
 
 #field-text {
-    border: 0.5px solid rgba(112, 128, 144, 0.288);
+
     width: 100%;
     border-radius: 5px;
     height: 300px;
-    transition: 1s;
-    padding: 10px;
     color: #01407a;
     font-size: 15px;
-    box-shadow: rgba(0, 0, 0, 0.144) 0px 0px 5px;
-    cursor: pointer;
+    transition: .2s;
+    /* border: #01407a 3px solid; */
+    border: none;
+    padding: 5px;
+    background-color: #f3f3f3;
+
+
 
 
 }
 
 #field-text:focus {
-    border: #01407a 0.02px solid;
-    outline: #01407a;
-    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 0 3px #92c3f0 , 0 0 0 4px #056ac9;   
+    background-color: #FFFF;
+    /* outline: #01407a 3px solid; */
+
 }
 
 .quantidade-letra {
@@ -106,6 +112,7 @@ body {
     display: flex;
     font-size: 15px;
     
+    
 }
 
 .content p{
@@ -126,13 +133,27 @@ body {
     font-weight: 500;
 }
 
+
+#btn-subimit-denuncia:hover{
+  
+        outline: none;
+        box-shadow: 0 0 0 3px #f5c3b4 , 0 0 0 4px #F24E1E;
+        cursor: pointer;
+       
+        /* outline: #01407a 3px solid; */
+    
+
+    
+}
+
 #disable-btn {
     align-self: flex-end;
     padding: 15px;
     width: 330px;
-    border: #01407a 0.5px solid;
-    color: #01407a;
-    background-color: transparent;
+    border: none;
+     color: #fff;
+    background-color:  #f5c3b4 ;
+    cursor: not-allowed;
     border-radius: 5PX;
     font-weight: 500;
 
@@ -240,3 +261,53 @@ body {
 
     }
 }
+
+
+/* Animações */
+
+
+
+
+
+
+.animeUp{
+    animation: animeUp .7s ease-in-out .4s backwards;
+    -webkit-animation: animeUp .7s ease-in-out .4s backwards;
+  }
+  
+  
+  @keyframes animeUp{
+    0%{
+      transform: translateY(50px);
+      -webkit-transform: translateY(50px);
+      opacity: 0;
+    }
+    100%{
+      transform: translateY(0px);
+      -webkit-transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  .animeDown{
+    transition: 0.5s;
+    animation: animeDown .7s ease-in-out .4s;
+    -webkit-animation: animeDown .7s ease-in-out .4s backwards;
+  }
+  
+  
+  @keyframes animeDown{
+    0%{
+      transform: translateY(-50px);
+      -webkit-transform: translateY(-50px);
+      opacity: 0;
+    }
+    100%{
+      transform: translateY(0px);
+      -webkit-transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  
+  

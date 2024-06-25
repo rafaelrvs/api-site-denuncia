@@ -3,6 +3,7 @@
     padding: 30px;
     background-color: #01427A;
     box-shadow:0 1px 5px black;
+    
 
 }
 
@@ -11,9 +12,10 @@
     margin: 0 auto;
 }
 .header img{
-    
     height: 90px;
+    margin-top: 10px;
 }
+
 
 @media (max-width:1024px) {
 
@@ -31,3 +33,9 @@
         }
 
 }
+
+.header.smaller {
+    height: 50px; /* Altura quando rola */
+    padding: 10px;
+  }
+  
